@@ -12,7 +12,7 @@ A web project for the Google Developer Group (GDG) community.
 
 1. **Clone the repository:**
     ```bash
-    git clone [https://github.com/your-username/GDG-Website.git](https://github.com/your-username/GDG-Website.git)
+    git clone https://github.com/your-username/GDG-Website.git
     ```
 2. **Install dependencies:**
     ```bash

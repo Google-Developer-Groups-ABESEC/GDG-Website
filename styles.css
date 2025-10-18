@@ -4,12 +4,11 @@
     box-sizing: border-box;
 }
 
-/* Remove default scroll-behavior since Lenis handles it */
 html {
     scroll-behavior: auto;
 }
 
-/* Optimize for Lenis smooth scrolling */
+
 html.lenis {
     height: auto;
 }

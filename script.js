@@ -198,70 +198,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Join Community Section Animations
     const communityTimeline = gsap.timeline({
-        scrollTrigger: {
-            trigger: '.join-community',
-            start: 'top 70%',
-            end: 'bottom 20%',
-            toggleActions: 'play none none reverse'
-        }
-    });
+    scrollTrigger: {
+        trigger: '.join-community',
+        start: 'top 70%',
+        end: 'bottom 20%',
+        toggleActions: 'play none none reverse'
+    }
+});
 
-    communityTimeline
-        .from('.community-title', {
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out'
-        })
-        .from('.community-subtitle', {
-            y: 30,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out'
-        }, '-=0.5')
-        .from('.community-cta', {
-            y: 20,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power3.out'
-        }, '-=0.3');
-        // .from('.pillar', {
-        //     y: 30,
-        //     opacity: 0,
-        //     duration: 0.8,
-        //     stagger: 0.2,
-        //     ease: 'power3.out'
-        // }, '-=0.5')
-
-    // Team Section Animations
-    const teamTimeline = gsap.timeline({
-        scrollTrigger: {
-            trigger: '.team-section',
-            start: 'top 70%',
-            end: 'bottom 20%',
-            toggleActions: 'play none none reverse'
-        }
-    });
-
-    teamTimeline
-        .from('.team-title', {
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out'
-        })
-        .from('.team-subtitle', {
-            y: 30,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out'
-        }, '-=0.5')
-        .from('.team-description', {
-            y: 30,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out'
-        }, '-=0.5');
+communityTimeline
+    .from('.community-title', {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out'
+    })
+    .from('.community-subtitle', {
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out'
+    }, '-=0.5')
+    .from('.pillar', {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power3.out',
+        clearProps: 'all' 
+    }, '-=0.5')
+    .from('.community-cta', {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out'
+    }, '-=0.3');
         // .from('.team-card', {
         //     y: 50,
         //     opacity: 0,

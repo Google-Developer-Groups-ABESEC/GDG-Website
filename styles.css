@@ -4,12 +4,11 @@
     box-sizing: border-box;
 }
 
-/* Remove default scroll-behavior since Lenis handles it */
 html {
     scroll-behavior: auto;
 }
 
-/* Optimize for Lenis smooth scrolling */
+
 html.lenis {
     height: auto;
 }
@@ -35,7 +34,7 @@ body {
     top: 0;
     left: 0;
     overflow: hidden;
-    z-index: 0;
+    z-index: -1;
 }
 
 .background {
@@ -108,18 +107,6 @@ body {
     }
 }
 
-@keyframes gradientShift {
-    0% {
-        opacity: 0.5;
-    }
-    50% {
-        opacity: 0.8;
-    }
-    100% {
-        opacity: 0.5;
-    }
-}
-
 .navbar {
     position: fixed;
     top: 2rem;
@@ -132,11 +119,6 @@ body {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    /* background: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
 }
 
 .logo-container {
@@ -499,17 +481,14 @@ body {
 
 .hero-title .line {
     display: block;
-    /* margin-bottom: 0.5rem; */
     font-weight: 500;
     background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.8));
     -webkit-background-clip: text;
-    /* -webkit-text-fill-color: transparent; */
     background-clip: text;
 }
 
 .hero-title .line:first-child {
     font-size: 3.8rem;
-    /* margin-bottom: 1rem; */
     font-weight: 500;
 }
 
@@ -760,7 +739,6 @@ body {
     margin-bottom: 2rem;
     background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.8));
     -webkit-background-clip: text;
-    /* -webkit-text-fill-color: transparent; */
     background-clip: text;
 }
 
@@ -953,7 +931,7 @@ body {
     position: relative;
     width: 100%;
     padding: 8rem 4rem;
-    z-index: 1;
+    z-index: 10;
     background: transparent;
 }
 
@@ -962,6 +940,8 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     text-align: center;
+    position: relative;
+    z-index: 10;
 }
 
 .community-title {
@@ -982,13 +962,16 @@ body {
     color: rgba(255, 255, 255, 0.85);
     max-width: 800px;
     margin: 0 auto 4rem;
+    font-weight: 400;
 }
 
 .value-pillars {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 2.5rem;
     margin-bottom: 4rem;
+    position: relative;
+    z-index: 10;
 }
 
 .pillar {
@@ -996,12 +979,17 @@ body {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px;
-    padding: 2.5rem 2rem;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 3rem 2.5rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
-    transform-style: preserve-3d;
-    perspective: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 10;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .pillar::before {
@@ -1016,8 +1004,9 @@ body {
         rgba(52, 168, 83, 0.1)
     );
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.4s ease;
     z-index: 0;
+    border-radius: 24px;
 }
 
 .pillar::after {
@@ -1056,9 +1045,29 @@ body {
     animation: borderGlow 2s ease infinite;
 }
 
+.pillar-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
 .pillar:hover .pillar-icon {
+    animation: iconFloat 2s ease infinite 0.3s;
     transform: scale(1.2) rotate(10deg);
-    animation: iconFloat 2s ease infinite;
+}
+
+.pillar h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .pillar:hover h3 {
@@ -1070,38 +1079,97 @@ body {
     animation: textGlow 2s ease infinite;
 }
 
-.pillar-icon {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    z-index: 1;
-}
-
-.pillar h3 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: #ffffff;
-    margin-bottom: 1rem;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    z-index: 1;
-}
-
 .pillar p {
     font-family: 'Outfit', sans-serif;
     font-size: 1.1rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.85);
-    transition: all 0.5s ease;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 2rem;
+    transition: color 0.4s ease;
     position: relative;
     z-index: 1;
+    font-weight: 400;
 }
 
 .pillar:hover p {
     color: rgba(255, 255, 255, 1);
     transform: translateY(-2px);
+}
+
+.pillar-cta {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.85rem 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    background: rgba(66, 133, 244, 0.15);
+    color: #4285F4;
+    border: 1.5px solid rgba(66, 133, 244, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    display: inline-block;
+}
+
+.pillar-cta:hover {
+    background: #4285F4;
+    color: #ffffff;
+    border-color: #4285F4;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(66, 133, 244, 0.4);
+}
+
+.community-cta {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2.5rem;
+}
+
+.cta-button {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 1.1rem 2.8rem;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.cta-button.primary {
+    background: #4285F4;
+    color: #ffffff;
+    border: none;
+}
+
+.cta-button.primary:hover {
+    background: #3367d6;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(66, 133, 244, 0.4);
+}
+
+.cta-button.secondary {
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.cta-button.secondary:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: scale(1.2) rotate(10deg) translateY(0);
+    }
+    50% {
+        transform: scale(1.2) rotate(10deg) translateY(-5px);
+    }
 }
 
 @keyframes gradientShift {
@@ -1128,18 +1196,6 @@ body {
     }
 }
 
-@keyframes iconFloat {
-    0% {
-        transform: scale(1.2) rotate(10deg) translateY(0);
-    }
-    50% {
-        transform: scale(1.2) rotate(10deg) translateY(-5px);
-    }
-    100% {
-        transform: scale(1.2) rotate(10deg) translateY(0);
-    }
-}
-
 @keyframes textGlow {
     0% {
         filter: brightness(1);
@@ -1152,48 +1208,6 @@ body {
     }
 }
 
-.community-cta {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    margin-top: 2rem;
-}
-
-.cta-button {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 1rem 2.5rem;
-    border-radius: 12px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.cta-button.primary {
-    background: #4285F4;
-    color: #ffffff;
-    border: none;
-}
-
-.cta-button.primary:hover {
-    background: #3367d6;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(66, 133, 244, 0.3);
-}
-
-.cta-button.secondary {
-    background: transparent;
-    color: #ffffff;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-.cta-button.secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-}
-
-/* Responsive Styles for Join Community Section */
 @media screen and (max-width: 1200px) {
     .join-community {
         padding: 6rem 3rem;
@@ -1206,6 +1220,10 @@ body {
     .community-subtitle {
         font-size: 1.3rem;
     }
+    
+    .value-pillars {
+        gap: 2rem;
+    }
 }
 
 @media screen and (max-width: 992px) {
@@ -1215,7 +1233,7 @@ body {
     
     .value-pillars {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
+        gap: 1.8rem;
     }
     
     .community-title {
@@ -1266,11 +1284,11 @@ body {
     }
     
     .pillar {
-        padding: 2rem 1.5rem;
+        padding: 2.5rem 2rem;
     }
     
     .pillar h3 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
     
     .pillar p {
@@ -1724,88 +1742,3 @@ body {
         font-size: 0.9rem;
     }
 }
-
-/* Events Section Styles */
-.events-section {
-    position: relative;
-    width: 100%;
-    padding: 8rem 4rem;
-    z-index: 1;
-    background: transparent;
-}
-
-.events-content {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.events-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 4rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.8));
-    -webkit-background-clip: text;
-    background-clip: text;
-}
-
-.events-subtitle {
-    font-family: 'Outfit', sans-serif;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 4rem;
-}
-
-/* Responsive Styles for Events Section */
-@media screen and (max-width: 1200px) {
-    .events-section {
-        padding: 6rem 3rem;
-    }
-    
-    .events-title {
-        font-size: 3.5rem;
-    }
-}
-
-@media screen and (max-width: 992px) {
-    .events-section {
-        margin-top: 50px;
-        padding: 5rem 2.5rem;
-    }
-    
-    .events-title {
-        font-size: 3rem;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .events-section {
-        padding: 4rem 2rem;
-    }
-    
-    .events-title {
-        font-size: 2.5rem;
-    }
-    
-    .events-subtitle {
-        font-size: 1.2rem;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .events-section {
-        padding: 3rem 1.5rem;
-    }
-    
-    .events-title {
-        font-size: 2rem;
-    }
-    
-    .events-subtitle {
-        font-size: 1.1rem;
-    }
-} 

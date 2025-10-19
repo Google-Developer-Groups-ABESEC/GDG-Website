@@ -26,6 +26,45 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: 'power3.out'
     });
 
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('.navbar');
+    let isHidden = false;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Only trigger after a bit of scroll (prevents flicker at top)
+        if (Math.abs(currentScroll - lastScrollTop) < 10) return;
+
+        if (currentScroll > lastScrollTop && currentScroll > 100) {
+            // Scrolling down → hide navbar (only if not already hidden)
+            if (!isHidden) {
+                gsap.to(navbar, {
+                    y: -120,
+                    opacity: 0,
+                    duration: 0.5,
+                    ease: 'power2.out'
+                });
+                isHidden = true;
+            }
+        } else {
+            // Scrolling up → show navbar (only if currently hidden)
+            if (isHidden) {
+                gsap.to(navbar, {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.5,
+                    ease: 'power2.out'
+                });
+                isHidden = false;
+            }
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+
+
+
     // Modified hamburger menu animation
     gsap.from('.hamburger-menu', {
         x: 50,

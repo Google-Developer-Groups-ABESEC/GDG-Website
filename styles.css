@@ -119,6 +119,12 @@ body {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.navbar.hidden {
+    transform: translate(-50%, -150%); /* slide up & out of view */
+    opacity: 0;
 }
 
 .logo-container {
